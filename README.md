@@ -1,30 +1,26 @@
-[Ques_1.md](https://github.com/user-attachments/files/18350919/Ques_1.md)
+[Ques_2.md](https://github.com/user-attachments/files/18350966/Ques_2.md)
 ---
-title: Type Based Output
+title: process_scores
 tags: ['sample tag1', 'sample tag2']
 ---
 
 # Problem Statement
 
-Question 1: Data Types
+Question 2: Data Processing
 
-Implement a function data_operations(variable) that takes input:
-    1 : An integer .
-    2 : A floating-point number.
-    3 : A string .
-    4 : A list .
-    5 : A dictionary e where keys are strings and values are integers.
-    6 : A set.
-The function should perform the following do operation on varible:
-    1 : Multiply the integer a by 2 and return the result.
-    2 : Add 5.5 to the float b and return the result.
-    3 : Return the uppercase version of the string c.
-    4 : Append the integer 10 to the list d and return it.
-    5 : Add a new key-value pair {"extra": 100} to the dictionary e and return it.
-    6 : Add the value 99 to the set f and return it.
+Implement a function process_scores(scores: list of dictionary) -> dict that takes a list of dictionaries containing scores in different subjects. 
 
-Return the result as mentioned above.
+Each dictionary is structured like:
+```
+{"name": str, "math": int, "science": int, "english": int}
+```
+Output :
+sorted average marks, student dictionary 
+{'name': 44,'name2':76}
 
+Your function should:
+Map each students name to their average score across all subjects.
+Return a dictionary with sorted names (keys) and their average scores (values).
 
 # Solution
 ```python test.py  -r 'python test.py'
@@ -33,24 +29,9 @@ Return the result as mentioned above.
 </prefix>
 <template>
 <sol> 
-def data_operations(variable):
-    typo = type(variable).__name__
-    match typo:
-        case int :
-            return variable * 2
-        case float:
-            return variable + 5.5
-        case str:
-            return variable.upper()
-        case list:
-            return variable + [10]
-        case dict :
-            return {**variable, "extra": 100}
-        case set :
-            return variable | {99}
-        case default:
-            return "Wrong Input"
-
+def process_scores(scores: list) -> dict:
+    averages = {student["name"]: sum([student["math"], student["science"], student["english"]]) / 3 for student in scores}
+    return dict(sorted(averages.items()))
 </sol>
 </template>
 <suffix>
@@ -64,102 +45,21 @@ def data_operations(variable):
 # Public Test Cases
 ## Input 1
 ```
-4 
+scores = [  {"name": "Alice", "math": 90, "science": 80, "english": 70},
+            {"name": "Bob", "math": 85, "science": 90, "english": 95}] 
 ```
 ## Output 1
 ```
-(data_operations(variable) == 8)
-```
-## Input 2
-```
-2.5
-```
-## Output 2
-```
-(data_operations(variable) == 8.0)
-```
-## Input 3
-```
-"hello"
-```
-## Output 3
-```
-(data_operations(variable) == "HELLO")
-```
-## Input 4
-```
-[1, 2]
-```
-## Output 4
-```
-(data_operations(variable) == [1, 2, 10])
-```
-## Input 5
-```
-{"key1": 1}
-```
-## Output 5
-```
-(data_operations(variable) == {"key1": 1, "extra": 100})
-```
-## Input 6
-```
-{1, 2, 3}
-```
-## Output 6
-```
-(data_operations(variable) == {1, 2, 3, 99})
+(process_scores(scores) ==  {"Alice": 80.0, "Bob": 90.0})
 ```
 # Private Test Cases
 
 ## Input 1
 ```
-0 
+scores = [{"name": "Charlie", "math": 60, "science": 70, "english": 80}, 
+            {"name": "Diana", "math": 100, "science": 90, "english": 85}]
 ```
 ## Output 1
 ```
-(data_operations(variable) == 0)
-```
-## Input 2
-```
--1.5
-```
-## Output 2
-```
-(data_operations(variable) == 4.0)
-```
-## Input 3
-```
-"world"
-```
-## Output 3
-
-```
-(data_operations(variable) == "WORLD")
-```
-## Input 4
-```
-[]
-```
-## Output 4
-
-```
-(data_operations(variable) == [10])
-```
-## Input 5
-```
-{}
-```
-## Output 5
-```
-(data_operations(variable) == {"extra": 100})
-```
-## Input 6
-
-```
-set()
-```
-## Output 6
-```
-(data_operations(variable) == {99})
+(process_scores(scores) == {"Charlie": 70.0, "Diana": 91.66666666666667})
 ```
