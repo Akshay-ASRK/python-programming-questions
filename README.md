@@ -8,6 +8,7 @@ title: filter_even_numbers
 Question 3: Data Processing I/O
  
 Write a function filter_even_numbers that:
+
 Takes a list of integers as input from stdin.
 Prints the sorted list of even integers to stdout.
 
