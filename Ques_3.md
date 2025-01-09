@@ -1,6 +1,5 @@
 ---
 title: filter_even_numbers
-tags: ['sample tag1', 'sample tag2']
 ---
 
 # Problem Statement
